@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TreeItem
+class TreeItem
 {
     public var title: String
     public var id: Int? = nil

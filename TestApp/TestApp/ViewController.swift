@@ -8,20 +8,46 @@
 
 import UIKit
 
-class ViewController: UIViewController
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var items = [TreeItem]()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.items.count;
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell")
+        
+        cell?.textLabel?.text = self.items[indexPath.row].title
+        
+        return cell!
+    
     }
 
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
 
     override func viewWillAppear(_ animated: Bool)
     {
@@ -54,6 +80,16 @@ class ViewController: UIViewController
 
                 do
                 {
+                    try FileManager.default.removeItem(at: destinationFileUrl)
+                    print("Successfully removed. Status code: \(statusCode)")
+                }
+                catch (let removeError)
+                {
+                    print("Error creating a file \(destinationFileUrl) : \(removeError)")
+                }
+                
+                do
+                {
                     try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
                 }
                 catch (let writeError)
@@ -74,6 +110,7 @@ class ViewController: UIViewController
         {
             let jsonString = try String(contentsOf: destinationFileUrl, encoding: .utf8)
             let a = ItemParser.parseJsonFrom(string: jsonString)
+            self.items = a
             print(a)
         }
         catch

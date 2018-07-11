@@ -35,7 +35,7 @@ class ItemParser
         let id = itemJson[JsonKey.id.rawValue].int
         let subs = itemJson[JsonKey.subs.rawValue].array
         
-        var item = TreeItem(withTitle: title, id: id)
+        let item = TreeItem(withTitle: title, id: id)
         item.subs = subs?.map({parse(item: $0)})
     
         return item
