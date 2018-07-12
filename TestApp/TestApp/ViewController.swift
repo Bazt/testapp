@@ -23,6 +23,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name.Hello, object: nil, queue: nil) { (_) in
+            DispatchQueue.main.sync {
+                guard let xs = TestAppDatabase.getItems() else
+                {
+                    return
+                }
+                self.items = xs
+                self.tableView.reloadData()
+            }
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -65,15 +78,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         do
         {
-            let jsonString = try String(contentsOf: downloadedFileDestination, encoding: .utf8)
-            self.items = ItemParser.parseJsonFrom(string: jsonString)
+//            let jsonString = try String(contentsOf: downloadedFileDestination, encoding: .utf8)
+//            self.items = ItemParser.parseJsonFrom(string: jsonString)
             
-            
+            self.items = TestAppDatabase.getItems() ?? []
         }
         catch
         {
 
         }
+        
         
         
         

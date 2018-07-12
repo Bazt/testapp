@@ -75,7 +75,7 @@ DEPENDENCIES:
   - YapDatabase (~> 3.1)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - CocoaLumberjack
     - SwiftyJSON
     - YapDatabase
@@ -87,4 +87,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 68e2569c9f4be5dfa4971ba9cf668cccd2b2d836
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.5.0

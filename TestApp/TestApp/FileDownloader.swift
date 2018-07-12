@@ -53,7 +53,8 @@ class FileDownloader
                     try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
                     print("Successfully copied file to \(destinationFileUrl)")
                     downloadedFileUrl = destinationFileUrl
-                    
+                    let jsonString = try String(contentsOf: downloadedFileUrl!, encoding: .utf8)
+                    TestAppDatabase.save(items: ItemParser.parseJsonFrom(string: jsonString))
                 }
                 catch (let writeError)
                 {

@@ -16,6 +16,7 @@
 		BD49251220F501DB003B2F1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD49251020F501DB003B2F1B /* LaunchScreen.storyboard */; };
 		BDB6261620F5098C00A41040 /* TreeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB6261520F5098C00A41040 /* TreeItem.swift */; };
 		BDB6261820F50E0A00A41040 /* ItemParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB6261720F50E0A00A41040 /* ItemParser.swift */; };
+		BDB6261A20F78E5100A41040 /* TestAppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB6261920F78E5100A41040 /* TestAppDatabase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		BD49251320F501DB003B2F1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDB6261520F5098C00A41040 /* TreeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeItem.swift; sourceTree = "<group>"; };
 		BDB6261720F50E0A00A41040 /* ItemParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemParser.swift; sourceTree = "<group>"; };
+		BDB6261920F78E5100A41040 /* TestAppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppDatabase.swift; sourceTree = "<group>"; };
 		DBCF8C99066E2B1CFDDCD766 /* Pods_TestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A5EB91B3365C9CCA79A78B /* Pods-TestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestApp/Pods-TestApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 				BDB6261520F5098C00A41040 /* TreeItem.swift */,
 				BDB6261720F50E0A00A41040 /* ItemParser.swift */,
 				7C61EB8520F76A2D0020CE8C /* FileDownloader.swift */,
+				BDB6261920F78E5100A41040 /* TestAppDatabase.swift */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDB6261A20F78E5100A41040 /* TestAppDatabase.swift in Sources */,
 				BD49250A20F501D8003B2F1B /* ViewController.swift in Sources */,
 				BDB6261820F50E0A00A41040 /* ItemParser.swift in Sources */,
 				BDB6261620F5098C00A41040 /* TreeItem.swift in Sources */,
