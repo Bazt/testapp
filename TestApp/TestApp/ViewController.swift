@@ -21,6 +21,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view, typically from a nib.
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -42,6 +44,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell")
         
         cell?.textLabel?.text = self.items[indexPath.row].title
+        if let count = self.items[indexPath.row].subs?.count, count > 0
+        {
+            cell?.accessoryType =  .disclosureIndicator
+        }
         
         return cell!
     
@@ -81,16 +87,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 do
                 {
                     try FileManager.default.removeItem(at: destinationFileUrl)
-                    print("Successfully removed. Status code: \(statusCode)")
+                    print("Successfully removed file at \(destinationFileUrl)")
                 }
                 catch (let removeError)
                 {
-                    print("Error creating a file \(destinationFileUrl) : \(removeError)")
+                    print("Error removing a file \(destinationFileUrl) : \(removeError)")
                 }
                 
                 do
                 {
                     try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
+                    print("Successfully copied file to \(destinationFileUrl)")
                 }
                 catch (let writeError)
                 {
