@@ -57,68 +57,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewWillAppear(_ animated: Bool)
     {
-        // Create destination URL
-        guard let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else
+
+        guard let downloadedFileDestination = FileDownloader.downloadYandexJson() else
         {
             return
         }
 
-
-        let destinationFileUrl = documentsUrl.appendingPathComponent("yandexTree.json")
-        let fileURL            = URL(string: "https://money.yandex.ru/api/categories-list")
-
-        let sessionConfig = URLSessionConfiguration.default
-        let session       = URLSession(configuration: sessionConfig)
-
-        let request = URLRequest(url: fileURL!)
-
-        let task = session.downloadTask(with: request)
-        {
-            (tempLocalUrl, response, error) in
-
-            if let tempLocalUrl = tempLocalUrl, error == nil
-            {
-                // Success
-                if let statusCode = (response as? HTTPURLResponse)?.statusCode
-                {
-                    print("Successfully downloaded. Status code: \(statusCode)")
-                }
-
-                do
-                {
-                    try FileManager.default.removeItem(at: destinationFileUrl)
-                    print("Successfully removed file at \(destinationFileUrl)")
-                }
-                catch (let removeError)
-                {
-                    print("Error removing a file \(destinationFileUrl) : \(removeError)")
-                }
-                
-                do
-                {
-                    try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
-                    print("Successfully copied file to \(destinationFileUrl)")
-                }
-                catch (let writeError)
-                {
-                    print("Error creating a file \(destinationFileUrl) : \(writeError)")
-                }
-
-            }
-            else
-            {
-                print("Error took place while downloading a file. Error description: %@", error?.localizedDescription ?? "Some error occured");
-            }
-        }
-        task.resume()
-
-
         do
         {
-            let jsonString = try String(contentsOf: destinationFileUrl, encoding: .utf8)
-            let a = ItemParser.parseJsonFrom(string: jsonString)
-            self.items = a
-            print(a)
+            let jsonString = try String(contentsOf: downloadedFileDestination, encoding: .utf8)
+            self.items = ItemParser.parseJsonFrom(string: jsonString)
+            
+            
         }
         catch
         {
