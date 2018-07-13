@@ -48,7 +48,7 @@ class TestAppViewController: UITableViewController
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let row = indexPath.row
-        if let count = itemsToShow[row].subs?.count, count > 0
+        if let count = self.itemsToShow[row].subs?.count, count > 0
         {
             self.itemsToShow = itemsToShow[row].subs!
             self.itemsTableView.reloadData()
@@ -56,34 +56,34 @@ class TestAppViewController: UITableViewController
     }
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = self.itemsTableView.dequeueReusableCell(withIdentifier: reuseIdentifier)
+        let cell = itemsTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for:indexPath) as UITableViewCell
         
-        cell?.textLabel?.text = self.itemsToShow[indexPath.row].title
-        if let count = self.itemsToShow[indexPath.row].subs?.count, count > 0
+        cell.textLabel?.text = itemsToShow[indexPath.row].title
+        if let count = itemsToShow[indexPath.row].subs?.count, count > 0
         {
-            cell?.accessoryType =  .disclosureIndicator
+            cell.accessoryType = .disclosureIndicator
+        }
+        else
+        {
+            cell.accessoryType = .none
+            cell.isUserInteractionEnabled = false
         }
         
-        return cell!
+        return cell
     
     }
-
-
 
     override func viewWillAppear(_ animated: Bool)
     {
         itemsToShow = items
-        FileDownloader.downloadYandexJson()
+        _ = FileDownloader.downloadYandexJson()
     }
-    
-    
-
-
 }
 
