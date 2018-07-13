@@ -51,10 +51,17 @@ class TestAppViewController: UITableViewController
         if let count = self.itemsToShow[row].subs?.count, count > 0
         {
             self.itemsToShow = itemsToShow[row].subs!
+            
+            self.performSegue(withIdentifier: "segueid", sender: self)
             self.itemsTableView.reloadData()
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "next") as! TestAppViewController
+//            vc.items = itemsToShow
+//            vc.itemsToShow = vc.items
+//            navigationController?.pushViewController(self, animated: false)
         }
+        
+        
     }
-    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
