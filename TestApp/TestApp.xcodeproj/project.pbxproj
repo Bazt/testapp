@@ -59,6 +59,49 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7C61EB8920FB62DB0020CE8C /* database */ = {
+			isa = PBXGroup;
+			children = (
+				7C61EB8D20FB63470020CE8C /* db_items */,
+				BDB6261920F78E5100A41040 /* TestAppDatabase.swift */,
+			);
+			path = database;
+			sourceTree = "<group>";
+		};
+		7C61EB8A20FB62F50020CE8C /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				BD49250B20F501D8003B2F1B /* Main.storyboard */,
+				BD49251020F501DB003B2F1B /* LaunchScreen.storyboard */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		7C61EB8B20FB63080020CE8C /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				7C61EB8520F76A2D0020CE8C /* FileDownloader.swift */,
+				BDB6261720F50E0A00A41040 /* ItemParser.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		7C61EB8C20FB63230020CE8C /* view_controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BD49250920F501D8003B2F1B /* TestAppViewController.swift */,
+			);
+			path = view_controllers;
+			sourceTree = "<group>";
+		};
+		7C61EB8D20FB63470020CE8C /* db_items */ = {
+			isa = PBXGroup;
+			children = (
+				BDB6261520F5098C00A41040 /* TreeItem.swift */,
+			);
+			path = db_items;
+			sourceTree = "<group>";
+		};
 		BD4924FB20F501D8003B2F1B = {
 			isa = PBXGroup;
 			children = (
@@ -80,17 +123,14 @@
 		BD49250620F501D8003B2F1B /* TestApp */ = {
 			isa = PBXGroup;
 			children = (
+				7C61EB8C20FB63230020CE8C /* view_controllers */,
+				7C61EB8B20FB63080020CE8C /* utils */,
+				7C61EB8A20FB62F50020CE8C /* ui */,
+				7C61EB8920FB62DB0020CE8C /* database */,
 				7C61EB8720F9564D0020CE8C /* YandexDataSource.swift */,
 				BD49250720F501D8003B2F1B /* AppDelegate.swift */,
-				BD49250920F501D8003B2F1B /* TestAppViewController.swift */,
-				BD49250B20F501D8003B2F1B /* Main.storyboard */,
 				BD49250E20F501DB003B2F1B /* Assets.xcassets */,
-				BD49251020F501DB003B2F1B /* LaunchScreen.storyboard */,
 				BD49251320F501DB003B2F1B /* Info.plist */,
-				BDB6261520F5098C00A41040 /* TreeItem.swift */,
-				BDB6261720F50E0A00A41040 /* ItemParser.swift */,
-				7C61EB8520F76A2D0020CE8C /* FileDownloader.swift */,
-				BDB6261920F78E5100A41040 /* TestAppDatabase.swift */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";

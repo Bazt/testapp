@@ -32,16 +32,23 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="jLE-qI-q8g" id="68T-vH-mC4"/>
-                            <outlet property="delegate" destination="jLE-qI-q8g" id="kJ8-Wl-9rg"/>
+                            <outlet property="dataSource" destination="9ZA-Qw-9sL" id="fFT-8F-HCL"/>
+                            <outlet property="delegate" destination="efk-UI-xaa" id="JGb-iI-hcX"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="u97-h9-Zfj"/>
                     <connections>
-                        <outlet property="itemsTableView" destination="fdH-Ne-Gt9" id="Cqu-ja-h8v"/>
+                        <outlet property="activityIndicator" destination="Pjx-ML-Th4" id="Ffv-Hr-sMN"/>
+                        <outlet property="itemsTableView" destination="fdH-Ne-Gt9" id="0au-xK-pbo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kcQ-Wh-Isg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="Pjx-ML-Th4">
+                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
+                <customObject id="efk-UI-xaa" userLabel="TestAppTableViewDelegate" customClass="TestAppViewController" customModule="TestApp" customModuleProvider="target"/>
+                <customObject id="9ZA-Qw-9sL" userLabel="YandexDataSource" customClass="YandexDataSource" customModule="TestApp" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-1630" y="-755"/>
         </scene>

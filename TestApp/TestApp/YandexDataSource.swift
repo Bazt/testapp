@@ -7,12 +7,37 @@
 //
 
 import Foundation
-class YandexDataSource
+import UIKit
+
+class YandexDataSource: NSObject, UITableViewDataSource
 {
     static let shared = YandexDataSource()
+    
     var allItems = [TreeItem]()
     private(set) var currentItems = [TreeItem]()
+    private var history = [[TreeItem]]()
+
     
+    // MARK: UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("numberOfRowsInSection = \(currentItems.count)")
+        return currentItems.count;
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TestAppViewController.reuseIdentifier, for: indexPath) as UITableViewCell
+        let itemsToShow = YandexDataSource.shared.currentItems
+        cell.textLabel?.text = itemsToShow[indexPath.row].title
+        if let count = itemsToShow[indexPath.row].subs?.count, count > 0 {
+            cell.accessoryType = .disclosureIndicator
+        } else {
+            cell.accessoryType = .none
+            cell.isUserInteractionEnabled = false
+        }
+        print("cellForRowAt \(indexPath.row), title = \(cell.textLabel?.text ?? "nil")")
+        return cell
+        
+    }
     
     func itemSelectedAt(index: Int)
     {
@@ -34,30 +59,20 @@ class YandexDataSource
         currentItems = history.last ?? []
     }
     
-    private var history = [[TreeItem]]()
-    
-    private init(withAllItems items: [TreeItem] = [], andCurrenItems currentItems: [TreeItem] = [])
+    func updateFromDB()
     {
-        self.allItems = TestAppDatabase.getItems() ?? items
+        self.allItems = TestAppDatabase.getItems()
         self.currentItems = self.allItems
-        self.history = [self.allItems]
+        history = [self.currentItems]
+    }
+
+    private override init()
+    {
+        super.init()
+
+        print("fucking init call in YDS")
+        updateFromDB()
         
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name.DataChanged, object: nil, queue: nil)
-        {
-            (_) in
-            DispatchQueue.main.sync
-            {
-                guard let xs = TestAppDatabase.getItems() else
-                {
-                    return
-                }
-                self.allItems = xs
-                self.currentItems = xs
-                self.history = [self.allItems]
-            }
-            
-        }
     }
     
     deinit
