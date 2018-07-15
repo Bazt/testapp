@@ -42,11 +42,9 @@ class TestAppDatabase
         {
             (transaction) in
             transaction.setObject(items, forKey: Collections.YandexJson, inCollection: Collections.YandexJson)
-            NotificationCenter.default.post(name: .Hello, object: nil)
+            NotificationQueue.default.enqueue(Notification(name: .DataChanged), postingStyle: .whenIdle)
         }
     }
-    
-
     
     class func getItems() -> [TreeItem]?
     {
@@ -58,10 +56,9 @@ class TestAppDatabase
         }
         return result
     }
-
 }
 
 extension Notification.Name
 {
-    static let Hello = Notification.Name(rawValue: "Hello")
+    static let DataChanged = Notification.Name(rawValue: "DataChanged")
 }

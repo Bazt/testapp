@@ -8,13 +8,25 @@
 
 import UIKit
 
-class TestAppViewController: UITableViewController
+class TestAppViewController: UITableViewController, UINavigationBarDelegate
 {
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        guard let count = navigationController?.viewControllers.count, count < TestAppViewController.viewControllersCount else
+        {
+            return
+        }
+
+        YandexDataSource.shared.goBack()
+        TestAppViewController.viewControllersCount -= 1
+        itemsTableView.reloadData()
+    }
+    
+    static var viewControllersCount = 1
+
     private let reuseIdentifier = "testAppCell"
     
     @IBOutlet var itemsTableView: UITableView!
-    var items = [TreeItem]()
-    var itemsToShow = [TreeItem]()
     
     override func viewDidLoad()
     {
@@ -25,43 +37,44 @@ class TestAppViewController: UITableViewController
         self.itemsTableView.delegate = self
         self.itemsTableView.dataSource = self
         
+        let b = UIButton(type: .infoLight)
+        b.titleLabel?.text = "Hello"
+        var f = itemsTableView.frame.size
+        f.height = 50
+        let v = UITextView(frame: CGRect(x: 0, y: 0, width: f.width, height: f.height))
+        v.text = "Hello"
+
         
-        NotificationCenter.default.addObserver(forName: Notification.Name.Hello, object: nil, queue: nil) { (_) in
-            DispatchQueue.main.sync {
-                guard let xs = TestAppDatabase.getItems() else
+        itemsTableView.tableHeaderView = (v)
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name.DataChanged, object: nil, queue: nil)
+        {
+            (_) in
+            DispatchQueue.main.sync
                 {
-                    return
-                }
-                self.items = xs
-                self.itemsToShow = self.items
-                self.itemsTableView.reloadData()
+                    self.itemsTableView.reloadData()
             }
             
         }
+        self.itemsTableView.reloadData()
     }
     
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.itemsToShow.count;
+        print("numberOfRowsInSection = \(YandexDataSource.shared.currentItems.count)")
+        return YandexDataSource.shared.currentItems.count;
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let row = indexPath.row
-        if let count = self.itemsToShow[row].subs?.count, count > 0
-        {
-            self.itemsToShow = itemsToShow[row].subs!
-            
-            self.performSegue(withIdentifier: "segueid", sender: self)
-            self.itemsTableView.reloadData()
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "next") as! TestAppViewController
-//            vc.items = itemsToShow
-//            vc.itemsToShow = vc.items
-//            navigationController?.pushViewController(self, animated: false)
-        }
-        
-        
+        self.performSegue(withIdentifier: "segueid", sender: self)
+        YandexDataSource.shared.itemSelectedAt(index: indexPath.row)
+        TestAppViewController.viewControllersCount += 1
+ 
     }
+    
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
@@ -71,7 +84,7 @@ class TestAppViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = itemsTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for:indexPath) as UITableViewCell
-        
+        let itemsToShow = YandexDataSource.shared.currentItems
         cell.textLabel?.text = itemsToShow[indexPath.row].title
         if let count = itemsToShow[indexPath.row].subs?.count, count > 0
         {
@@ -82,15 +95,14 @@ class TestAppViewController: UITableViewController
             cell.accessoryType = .none
             cell.isUserInteractionEnabled = false
         }
-        
+        print("cellForRowAt \(indexPath.row), title = \(cell.textLabel?.text ?? "nil")")
         return cell
     
     }
 
     override func viewWillAppear(_ animated: Bool)
     {
-        itemsToShow = items
-        _ = FileDownloader.downloadYandexJson()
+        //_ = FileDownloader.downloadYandexJson()
     }
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C61EB8620F76A2D0020CE8C /* FileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61EB8520F76A2D0020CE8C /* FileDownloader.swift */; };
+		7C61EB8820F9564D0020CE8C /* YandexDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C61EB8720F9564D0020CE8C /* YandexDataSource.swift */; };
 		963D2EAC90155E507D59D7C6 /* Pods_TestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCF8C99066E2B1CFDDCD766 /* Pods_TestApp.framework */; };
 		BD49250820F501D8003B2F1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49250720F501D8003B2F1B /* AppDelegate.swift */; };
 		BD49250A20F501D8003B2F1B /* TestAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49250920F501D8003B2F1B /* TestAppViewController.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		2A33EE3A5CF3570E1950766E /* Pods-TestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestApp/Pods-TestApp.release.xcconfig"; sourceTree = "<group>"; };
 		7C61EB8520F76A2D0020CE8C /* FileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloader.swift; sourceTree = "<group>"; };
+		7C61EB8720F9564D0020CE8C /* YandexDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDataSource.swift; sourceTree = "<group>"; };
 		BD49250420F501D8003B2F1B /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD49250720F501D8003B2F1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD49250920F501D8003B2F1B /* TestAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		BD49250620F501D8003B2F1B /* TestApp */ = {
 			isa = PBXGroup;
 			children = (
+				7C61EB8720F9564D0020CE8C /* YandexDataSource.swift */,
 				BD49250720F501D8003B2F1B /* AppDelegate.swift */,
 				BD49250920F501D8003B2F1B /* TestAppViewController.swift */,
 				BD49250B20F501D8003B2F1B /* Main.storyboard */,
@@ -219,6 +222,7 @@
 				BDB6261A20F78E5100A41040 /* TestAppDatabase.swift in Sources */,
 				BD49250A20F501D8003B2F1B /* TestAppViewController.swift in Sources */,
 				BDB6261820F50E0A00A41040 /* ItemParser.swift in Sources */,
+				7C61EB8820F9564D0020CE8C /* YandexDataSource.swift in Sources */,
 				BDB6261620F5098C00A41040 /* TreeItem.swift in Sources */,
 				BD49250820F501D8003B2F1B /* AppDelegate.swift in Sources */,
 				7C61EB8620F76A2D0020CE8C /* FileDownloader.swift in Sources */,
