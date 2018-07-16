@@ -36,7 +36,6 @@ class TestAppDatabase {
         sharedConnection.readWrite {
             (transaction) in
             transaction.setObject(items, forKey: Collections.YandexJson, inCollection: Collections.YandexJson)
-            NotificationQueue.default.enqueue(Notification(name: .DataChanged), postingStyle: .whenIdle)
         }
     }
 
@@ -51,8 +50,4 @@ class TestAppDatabase {
         }
         return result
     }
-}
-
-extension Notification.Name {
-    static let DataChanged = Notification.Name(rawValue: "DataChanged")
 }

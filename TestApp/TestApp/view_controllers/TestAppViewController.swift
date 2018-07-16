@@ -10,10 +10,9 @@ import UIKit
 
 class TestAppViewController: UIViewController, UITableViewDelegate {
 
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     static var viewControllersCount = 1
     static let reuseIdentifier = "testAppCell"
-    
+
     @IBOutlet var itemsTableView: UITableView!
 
     // MARK: View Lifecycle
@@ -26,65 +25,71 @@ class TestAppViewController: UIViewController, UITableViewDelegate {
         TestAppViewController.viewControllersCount -= 1
         itemsTableView.reloadData()
     }
-    
-    private func downloadDataForTable()
-    {
+
+    @objc private func downloadDataForTable() {
         itemsTableView.isUserInteractionEnabled = false
-        activityIndicator.startAnimating()
-        
+
         FileDownloader.downloadYandexJson(onSuccess: {
             DispatchQueue.main.sync {
-            self.itemsTableView.isUserInteractionEnabled = true
-            self.activityIndicator.stopAnimating()
-            YandexDataSource.shared.updateFromDB()
-            self.itemsTableView.reloadData()
+                self.itemsTableView.isUserInteractionEnabled = true
+                YandexDataSource.shared.updateFromDB()
+                self.itemsTableView.reloadData()
             }
         }, onError: {
             DispatchQueue.main.sync {
-            self.itemsTableView.isUserInteractionEnabled = true
-            self.activityIndicator.stopAnimating()
+                self.itemsTableView.isUserInteractionEnabled = true
             }
         })
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        if let indexPath = itemsTableView.indexPathForSelectedRow {
+            itemsTableView.deselectRow(at: indexPath, animated: false)
+        }
+    }
+
+
+    private func addReloadButton() {
+        var f = itemsTableView.frame.size
+        f.height = 50
+        let b = UIButton(frame: CGRect(x: 0, y: 0, width: f.width / 3, height: f.height))
+        b.backgroundColor = UIColor.lightGray
+
+        b.setTitle("Reload from web", for: .normal)
+        b.setTitleColor(UIColor.black, for: .normal)
+
+        b.setTitleColor(UIColor.gray, for: .highlighted)
+        b.setTitleColor(UIColor.lightGray, for: .focused)
+        b.addTarget(self, action: #selector(downloadDataForTable), for: .touchUpInside)
+
+
+        b.titleLabel?.textAlignment = NSTextAlignment.center
+        itemsTableView.tableHeaderView = b
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view, typically from a nib.
+
+        addReloadButton()
 
         self.itemsTableView.register(UITableViewCell.self, forCellReuseIdentifier: TestAppViewController.reuseIdentifier)
         self.itemsTableView.delegate = self
         self.itemsTableView.dataSource = YandexDataSource.shared
-        
-        if YandexDataSource.shared.allItems == []
-        {
-           downloadDataForTable()
+
+        if YandexDataSource.shared.allItems == [] {
+            downloadDataForTable()
         }
 
-
-        let b = UIButton(type: .infoLight)
-        b.titleLabel?.text = "Hello"
-        var f = itemsTableView.frame.size
-        f.height = 50
-        let v = UITextView(frame: CGRect(x: 0, y: 0, width: f.width, height: f.height))
-        v.text = "Hello"
-
-        itemsTableView.tableHeaderView = (v)
-
-        NotificationCenter.default.addObserver(forName: Notification.Name.DataChanged, object: nil, queue: nil) {
-            (_) in
-            DispatchQueue.main.sync {
-                self.itemsTableView.reloadData()
-            }
-
-        }
         self.itemsTableView.reloadData()
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "segueid", sender: self)
         YandexDataSource.shared.itemSelectedAt(index: indexPath.row)
         TestAppViewController.viewControllersCount += 1
-        
+
     }
 }
 

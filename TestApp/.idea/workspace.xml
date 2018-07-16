@@ -30,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="YandexDataSource.swift" pinned="false" current-in-tab="true">
+      <file leaf-file-name="YandexDataSource.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TestApp/YandexDataSource.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+            <state relative-caret-position="218">
+              <caret line="60" column="5" selection-end-line="73" />
             </state>
           </provider>
         </entry>
@@ -53,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestAppViewController.swift" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestAppViewController.swift" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TestApp/view_controllers/TestAppViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="60" column="9" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
+            <state relative-caret-position="945">
+              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
             </state>
           </provider>
         </entry>
@@ -71,9 +71,9 @@
         <option value="$PROJECT_DIR$/TestApp/FileDownloader.swift" />
         <option value="$PROJECT_DIR$/TestApp/database/db_items/TreeItem.swift" />
         <option value="$PROJECT_DIR$/TestApp/utils/ItemParser.swift" />
-        <option value="$PROJECT_DIR$/TestApp/view_controllers/TestAppViewController.swift" />
         <option value="$PROJECT_DIR$/TestApp/database/TestAppDatabase.swift" />
         <option value="$PROJECT_DIR$/TestApp/YandexDataSource.swift" />
+        <option value="$PROJECT_DIR$/TestApp/view_controllers/TestAppViewController.swift" />
       </list>
     </option>
   </component>
@@ -181,12 +181,12 @@
       <option name="presentableId" value="Default" />
       <updated>1531236089381</updated>
       <workItem from="1531236090752" duration="557000" />
-      <workItem from="1531651486161" duration="2944000" />
+      <workItem from="1531651486161" duration="3637000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3501000" />
+    <option name="totallyTimeSpent" value="4194000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="0" />
@@ -248,9 +248,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestApp/utils/FileDownloader.swift">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/TestApp/utils/ItemParser.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -258,12 +255,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestApp/view_controllers/TestAppViewController.swift">
+    <entry file="file://$PROJECT_DIR$/TestApp/YandexDataSource.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="60" column="9" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
+        <state relative-caret-position="218">
+          <caret line="60" column="5" selection-end-line="73" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestApp/utils/FileDownloader.swift">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/TestApp/database/TestAppDatabase.swift">
       <provider selected="true" editor-type-id="text-editor">
@@ -272,10 +272,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestApp/YandexDataSource.swift">
+    <entry file="file://$PROJECT_DIR$/TestApp/view_controllers/TestAppViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+        <state relative-caret-position="945">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
         </state>
       </provider>
     </entry>
